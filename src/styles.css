@@ -1934,12 +1934,17 @@ button {
   :root {
     --tb: 54px;
   }
+  /* a phone: icons on top, the name under them in the flow, so the two never meet */
+  .desktop {
+    display: flex;
+    flex-direction: column;
+    padding: max(3cqh, env(safe-area-inset-top)) 4cqw 0;
+  }
   .icons {
-    left: 4cqw;
-    right: 4cqw;
-    top: max(3cqh, env(safe-area-inset-top));
+    position: static;
+    flex: none;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2.2cqh 0;
+    gap: 2cqh 0;
   }
   .icon {
     width: auto;
@@ -1949,23 +1954,30 @@ button {
     width: 46px;
   }
   .hero {
-    left: 6cqw;
-    right: 6cqw;
-    bottom: 6cqh;
+    position: static;
+    margin-top: auto;
+    padding: 12px 2cqw 3cqh;
     max-width: none;
     text-align: left;
   }
   .tagline {
     margin: 0;
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1.38;
     min-height: 0;
   }
   .name {
-    font-size: 15cqw;
+    font-size: 13.5cqw;
     white-space: normal;
   }
   .role {
-    font-size: 17px;
+    font-size: 16px;
+  }
+  /* a short phone screen (an in-app browser with its own bars): the intro line gives way */
+  @container (max-height: 650px) {
+    .tagline {
+      display: none;
+    }
   }
   .hint {
     display: none;
